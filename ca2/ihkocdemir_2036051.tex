@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{IAM566 Numerical Optimization \\ Computer Assignment 2}
+\author{Ismail Hakki Kocdemir, 2036051}
+\date{December 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Numerical Results}
+\begin{table}[h]
+\centering
+\caption{Numerical results for Algorithm-1 with different initial values (tol=1e-6)} \\ \\
+\begin{tabular}{ccc|cc}
+\hline
+$x_0$ & $\lambda_0$ & $s_0$ & $x$ & Num. of iterations \\ \hline
+
+$[29,1,10,1]$  &  $[-0.5,-0.5]$  & $[0.5,2,0.5,0.5]$ & $[30,0,10,0]$ & 13 \\
+ $[29,1,10,1]$  &  $[-1,-1]$  & $[2,3,1,1]$ & $[30,0,10,0]$ & 14     \\   
+ $[1,1,38,57]$  &  $[-1,-1]$  & $[2,3,1,1]$ & $[30,0,10,0]$ & 15     \\ 
+ $[1,10,29,48]$  &  $[-1,-10]$  & $[20,12,1,10]$ & $[30,0,10,0]$ & 17  \\ 
+ $[10,1,29,39]$  &  $[-1,-10]$  & $[20,12,1,10]$ & $[30,0,10,0]$ & 16  \\
+ $[0.5,30,0.4,20]$  &  $[-10,-10]$  & $[29,21,10,10]$ & $[30,0,10,0]$ & 17  \\ $[0.5,30,0.4,20]$  &  $[-1,-100]$  & $[200,102,1,100]$ & $[30,0,10,0]$ & 19 \\
+ $[10,10,20,20]$  &  $[-10,-10]$  & $[1,1,10,10]$ & $[10,30,0,0]$ & 16 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Numerical results for Algorithm-2 with different initial values (tol=1e-6)} \\ \\
+\begin{tabular}{ccc|cc}
+\hline
+$x_0$ & $\lambda_0$ & $s_0$ & $x$ & Num. of iterations \\ \hline
+$[29,1,10,1]$  &  $[-0.5,-0.5]$  & $[0.5,2,0.5,0.5]$ & $[30,0,10,0]$ & 4 \\
+$[29,1,10,1]$  &  $[-1,-1]$  & $[2,3,1,1]$ & $[30,0,10,0]$ & 4 \\
+$[1,1,38,57]$  &  $[-1,-1]$  & $[2,3,1,1]$ & $[30,0,10,0]$ & 6 \\
+$[1,10,29,48]$  &  $[-1,-10]$  & $[20,12,1,10]$ & $[30,0,10,0]$ & 6 \\ 
+$[10,1,29,39]$  &  $[-1,-10]$  & $[20,12,1,10]$ & $[30,0,10,0]$ & 5  \\    
+$[0.5,30,0.5,20]$  &  $[-10,-10]$  & $[29,21,10,10]$ & $[30,0,10,0]$ & 8  \\
+$[0.5,30,0.4,20]$  &  $[-1,-100]$  & $[200,102,1,100]$ & $[30,0,10,0]$ & 10 \\
+$[10,10,20,20]$  &  $[-10,-10]$  & $[1,1,10,10]$ & $[30,0,10,0]$ & 5 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Numerical results for \textit{linprog} with different initial values (tol=1e-6)} \\ \\
+\begin{tabular}{ccc|cc}
+\hline
+$x_0$ & $\lambda_0$ & $s_0$ & $x$ & Num. of iterations \\ \hline
+-    &      -     & -    & $[30,0,0,0]$  &         4           \\  \hline
+\end{tabular}
+\end{table}
+
+\section{Comments}
+  \\ 
+Note that in Table 1 and Table 2, all rows except the last one are feasible initial values.\\ 
+
+In general, we see that Algorithm 2 takes shorter time to reach to the minimum that satisfies the conditions, compared to Algorithm 1.\\ 
+
+However, further away from the minimum (where $c^Tx=-30$ and $ x^*=[30,0,\cdot,\cdot]^T $), we also observe that the number of iterations increase for both of the algorithms. \\
+
+For the infeasible case (last rows in Table 1 and 2), Algorithm 2 (Mehrotra) manages to reach to the minimum (we get $c^Tx=-30$), while Algorithm 1 (Primal-Dual) can not (we get $c^Tx=20$).\\
+
+As for the results from Matlab built-in function \textit{linprog}, my version (2016a) did not have the option to provide the initial point (It gave me "The interior-point algorithm uses a built-in starting point;
+ignoring supplied X0."). Hence, I could not try the values in Table 1 and 2 for Table 3. By using its own initial value assignment, it was able to reach to the minimum in 4 iterations, which is close to Algorithm 2 (Mehrotra) run by hand provided values.
+\end{document}
+
